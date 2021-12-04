@@ -43,4 +43,13 @@ public class PhoneNumber {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public PhoneNumber(Integer id, String number, Status status) {
+        this.id = id;
+        this.number = number;
+        this.status = status;
+    }
+
+    public PhoneNumber() {
+    }
 }

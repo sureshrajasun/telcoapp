@@ -5,6 +5,7 @@ import app.repository.CustomerRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CustomerService {
@@ -44,7 +45,10 @@ public class CustomerService {
      * @param customer - The customer to update.
      * @return The updated customer.
      */
+    @Transactional
     public Customer update(Integer id, Customer customer) {
+        Customer cust = customerRepository.getById(id);
+        customer.getPhoneNumbers().addAll(cust.getPhoneNumbers());
         return customerRepository.save(customer);
     }
 

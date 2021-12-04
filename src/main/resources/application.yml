@@ -19,10 +19,13 @@ spring:
         initialization-mode : always
     jackson:
         default-property-inclusion: non-null
+        serialization:
+            FAIL_ON_EMPTY_BEANS: false
     jpa:
         hibernate:
             ddl-auto: create
         open-in-view: false
+        enable_lazy_load_no_trans: true
         properties:
             hibernate:
                 ddl-auto: none
