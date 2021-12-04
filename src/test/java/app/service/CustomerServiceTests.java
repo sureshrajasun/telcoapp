@@ -1,6 +1,7 @@
 package app.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -54,6 +55,7 @@ public class CustomerServiceTests {
     @Test
     @DisplayName("#update returns an updated customer")
     void updateCustomer() {
+        when(customerRepository.getById(anyInt())).thenReturn(new Customer());
         when(customerRepository.save(any(Customer.class))).thenReturn(new Customer());
 
         assertThat(customerService.update(1, new Customer())).isInstanceOf(Customer.class);

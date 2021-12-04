@@ -1,14 +1,22 @@
 package app.service;
 
+import app.controller.GlobalExceptionHandler;
 import app.entity.Customer;
 import app.repository.CustomerRepository;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 public class CustomerService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
     @Autowired
     private transient CustomerRepository customerRepository;
@@ -46,10 +54,21 @@ public class CustomerService {
      * @return The updated customer.
      */
     @Transactional
-    public Customer update(Integer id, Customer customer) {
-        Customer cust = customerRepository.getById(id);
-        customer.getPhoneNumbers().addAll(cust.getPhoneNumbers());
-        return customerRepository.save(customer);
+    public Customer update(Integer id, Customer customer) throws EntityNotFoundException  {
+        try{
+            Customer cust = customerRepository.getById(id);
+            customer.getPhoneNumbers().addAll(cust.getPhoneNumbers());
+            return customerRepository.save(customer);
+
+        }catch (EntityNotFoundException e){
+            System.out.println(e.getMessage());
+            throw e;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            throw e;
+        }
+
     }
 
     /**

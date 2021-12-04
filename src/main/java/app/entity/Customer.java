@@ -24,7 +24,7 @@ public class Customer {
     public String email;
 
     @NotNull
-    @OneToMany(fetch=FetchType.EAGER)
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     @JoinTable( name="customer_phone",
         joinColumns=@JoinColumn( name="customer_id", referencedColumnName="id"),
         inverseJoinColumns=@JoinColumn(name="phoneNumbers_id", referencedColumnName="id"))

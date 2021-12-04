@@ -78,7 +78,7 @@ public class CustomerControllerITests {
     void updateUser() throws Exception {
         String customer = "{\"name\":\"name\",\"email\":\"string@string.com\"}";
         MvcResult response = mockMvc
-            .perform(put("/customer/1").content(customer).contentType(APPLICATION_JSON))
+            .perform(put("/customer/2").content(customer).contentType(APPLICATION_JSON))
             .andReturn();
 
         assertThat(response.getResponse().getStatus()).isEqualTo(200);
