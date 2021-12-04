@@ -57,16 +57,16 @@ curl --location --request GET 'http://localhost:8080/phonenumber?pageNo=0&pageSi
 curl --location --request POST 'http://localhost:8080/customer/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-"id": 1,
-"name": "aaa",
-"email": "ss@ss.com",
-"phoneNumbers": [
-{
-"id": 4,
-"number": "0444444444",
-"status": "ACTIVE"
-}
-]
+    "id": 1,
+    "name": "Jay",
+    "email": "jay@telco.com",
+    "phoneNumbers": [
+        {
+            "id": 6,
+            "number": "0466666666",
+            "status": "ACTIVE"
+        }
+    ]
 }'
 ```
 
