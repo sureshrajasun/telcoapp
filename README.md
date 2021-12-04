@@ -23,4 +23,4 @@ You can see the HTML report opening the [index.html](build/reports/tests/test/in
 ./gradlew test --tests SomeTestClass
 ```
 
-Please refer swagger docs http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config for the API contracts
+Please refer swagger API Docs **http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config** for the API contracts
