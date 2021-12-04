@@ -10,11 +10,11 @@ public class PhoneNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Integer id;
+    private Integer id;
 
     @NotNull
     @Column(name = "number", nullable = false, unique = true)
-    public String number;
+    private String number;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)

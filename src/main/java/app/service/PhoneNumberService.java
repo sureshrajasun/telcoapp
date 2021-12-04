@@ -1,6 +1,7 @@
 package app.service;
 
 import app.entity.PhoneNumber;
+import app.entity.Status;
 import app.repository.PhoneNumberRepository;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PhoneNumberService {
@@ -67,6 +69,27 @@ public class PhoneNumberService {
      */
     public PhoneNumber update(Integer id, PhoneNumber phoneNumber) {
         return phoneNumberRepository.save(phoneNumber);
+    }
+
+    /**
+     * Updates a Phone number.
+     * @param phoneNumber - The Phone number to activate.
+     * @return The success status.
+     */
+    @Transactional
+    public boolean activate(String phoneNumber) {
+        try {
+            PhoneNumber number = phoneNumberRepository.findByNumber(phoneNumber);
+            if(number != null && Status.INACTIVE.equals(number.getStatus())) {
+                phoneNumberRepository.updateStatus(number.getId(), Status.ACTIVE);
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            logger.error("Exception ",e);
+            return false;
+        }
     }
 
     /**

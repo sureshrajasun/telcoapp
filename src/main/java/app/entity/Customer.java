@@ -13,15 +13,15 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Integer id;
+    private Integer id;
 
     @NotNull
     @Column(name = "name", nullable = false)
-    public String name;
+    private String name;
 
     @NotNull
     @Column(name = "email", nullable = false)
-    public String email;
+    private String email;
 
     @NotNull
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)

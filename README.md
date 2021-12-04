@@ -79,11 +79,6 @@ curl --location --request GET 'http://localhost:8080/customer/1' \
 
 - To Activate a phone number
 ```curl
-curl --location --request PUT 'http://localhost:8080/phonenumber/6' \
---header 'Content-Type: application/json' \
---data-raw '{
-"id": 6,
-"number": "0466666666",
-"status": "ACTIVE"
-}'
+curl --location --request PUT 'http://localhost:8080/phonenumber/activate/0477777777' \
+--data-raw ''
 ```

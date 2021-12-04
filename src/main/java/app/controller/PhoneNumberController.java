@@ -5,6 +5,8 @@ import app.service.PhoneNumberService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,6 +36,18 @@ public class PhoneNumberController {
     @PutMapping("/{id}")
     public PhoneNumber update(@PathVariable Integer id, @Valid @RequestBody PhoneNumber phoneNumber) {
         return phoneNumberService.update(id, phoneNumber);
+    }
+
+    @PutMapping("/activate/{phoneNumber}")
+    public ResponseEntity activate(@PathVariable String phoneNumber) {
+         if(phoneNumberService.activate(phoneNumber)){
+             return ResponseEntity.ok("Mobile Number Activated!!");
+         } else {
+             return ResponseEntity
+                     .status(HttpStatus.BAD_REQUEST)
+                     .body("Mobile not found or already activated!");
+         }
+
     }
 
     @DeleteMapping("/{id}")
