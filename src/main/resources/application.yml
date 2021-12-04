@@ -1,0 +1,35 @@
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: debug
+            springframework:
+                web:
+                    filter:
+                        CommonsRequestLoggingFilter: debug
+server:
+    error:
+        include-stacktrace: never
+    port: 8080
+spring:
+    datasource:
+        password: secret
+        url: jdbc:postgresql://localhost:5432/spring
+        username: root
+        initialization-mode : always
+    jackson:
+        default-property-inclusion: non-null
+    jpa:
+        hibernate:
+            ddl-auto: create
+        open-in-view: false
+        properties:
+            hibernate:
+                ddl-auto: none
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+        show-sql: true
+    profiles:
+        active: default
