@@ -50,11 +50,11 @@ public class PhoneNumberController {
     @PutMapping("/activate/{phoneNumber}")
     public ResponseEntity activate(@PathVariable String phoneNumber) {
          if(phoneNumberService.activate(phoneNumber)){
-             return ResponseEntity.ok("Mobile Number Activated!!");
+             return ResponseEntity.ok("Phone Number Activated!!");
          } else {
              return ResponseEntity
                      .status(HttpStatus.BAD_REQUEST)
-                     .body("Mobile not found or already activated!");
+                     .body("Phone Number not found or already activated!");
          }
 
     }

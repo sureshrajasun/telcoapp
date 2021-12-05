@@ -3,6 +3,8 @@ package app.controller;
 import app.entity.Customer;
 import app.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +44,16 @@ public class CustomerController {
         return customerService.update(id, customer);
     }
 
+    @PutMapping("detachPhoneNumber/{id}/{phoneNumber}")
+    public ResponseEntity detachPhoneNumber(@PathVariable Integer id, @PathVariable String phoneNumber) {
+        if(customerService.detachPhoneNumber(id,phoneNumber)){
+            return ResponseEntity.ok("Phone Number detached from the Customer!!");
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Customer/Phone Number not found or already detached from this user!");
+        }
+    }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         customerService.delete(id);

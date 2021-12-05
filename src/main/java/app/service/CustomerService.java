@@ -1,6 +1,7 @@
 package app.service;
 
 import app.entity.Customer;
+import app.entity.PhoneNumber;
 import app.repository.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -65,6 +67,31 @@ public class CustomerService {
         catch (Exception e){
             System.out.println(e.getMessage());
             throw e;
+        }
+
+    }
+
+    /**
+     * Updates a customer.
+     * @param custId - The id of the customer.
+     * @param phoneNumber - The customer phone number to detach.
+     * @return The updated customer.
+     */
+    @Transactional
+    public boolean detachPhoneNumber(Integer custId, String phoneNumber) throws EntityNotFoundException  {
+        try {
+            Customer customer = customerRepository.getById(custId);
+            Optional<PhoneNumber> phoneNumberToDetach = customer.getPhoneNumbers().stream().filter(s -> s.getNumber().equals(phoneNumber)).findFirst();
+            if (phoneNumberToDetach.isPresent()) {
+                customer.getPhoneNumbers().remove(phoneNumberToDetach.get());
+                customerRepository.save(customer);
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
         }
 
     }

@@ -2,6 +2,7 @@ package app.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @Table(name = "phonenumber")
@@ -51,5 +52,18 @@ public class PhoneNumber {
     }
 
     public PhoneNumber() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PhoneNumber)) return false;
+        PhoneNumber that = (PhoneNumber) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getNumber(), that.getNumber()) && getStatus() == that.getStatus();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getNumber(), getStatus());
     }
 }
