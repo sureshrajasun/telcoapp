@@ -24,14 +24,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@DisplayName("Customer")
+@DisplayName("PhoneNumber")
 @SpringBootTest
 @Testcontainers
 @TestMethodOrder(OrderAnnotation.class)
-public class CustomerControllerITests {
+public class PhoneNumberControllerITests {
 
     @Autowired
     transient MockMvc mockMvc;
@@ -53,52 +54,64 @@ public class CustomerControllerITests {
 
     @Test
     @Order(1)
-    @DisplayName("/customer (GET)")
-    void getAllCustomers() throws Exception {
-        MvcResult response = mockMvc.perform(get("/customer")).andReturn();
+    @DisplayName("/phonenumber(GET)")
+    void getAllPhoneNumbers() throws Exception {
+        MvcResult response = mockMvc.perform(get("/phonenumber")).andReturn();
 
         assertThat(response.getResponse().getStatus()).isEqualTo(200);
     }
 
     @Test
     @Order(2)
-    @DisplayName("/customer (POST)")
-    void addCustomer() throws Exception {
-        String customer = "{\"name\":\"name\",\"email\":\"string@string.com\"}";
+    @DisplayName("/phonenumber(POST)")
+    void addPhoneNumber() throws Exception {
+        String phoneNumber = "{\"number\":\"0411272222\",\"status\":\"ACTIVE\"}";
         MvcResult response = mockMvc
-            .perform(post("/customer").content(customer).contentType(APPLICATION_JSON))
-            .andReturn();
-
-        assertThat(response.getResponse().getStatus()).isEqualTo(200);
-    }
-
-    @Test
-    @Order(3)
-    @DisplayName("/customer/{id} (PUT)")
-    void updateCustomer() throws Exception {
-        String customer = "{\"name\":\"name\",\"email\":\"string@string.com\"}";
-        MvcResult response = mockMvc
-            .perform(put("/customer/2").content(customer).contentType(APPLICATION_JSON))
-            .andReturn();
+                .perform(post("/phonenumber").content(phoneNumber).contentType(APPLICATION_JSON))
+                .andReturn();
 
         assertThat(response.getResponse().getStatus()).isEqualTo(200);
     }
 
     @Test
     @Order(4)
-    @DisplayName("/customer/{id} (GET)")
-    void getCustomerById() throws Exception {
-        MvcResult response = mockMvc.perform(get("/customer/1")).andReturn();
+    @DisplayName("/phoneNumber/{id} (GET)")
+    void getPhoneNumberById() throws Exception {
+        MvcResult response = mockMvc.perform(get("/phonenumber/1")).andReturn();
 
         assertThat(response.getResponse().getStatus()).isEqualTo(200);
     }
 
     @Test
     @Order(5)
-    @DisplayName("/customer/{id} (DELETE)")
-    void deleteCustomer() throws Exception {
-        MvcResult response = mockMvc.perform(delete("/customer/1")).andReturn();
+    @DisplayName("/phoneNumber/{id} (DELETE)")
+    void deletePhoneNumber() throws Exception {
 
-        assertThat(response.getResponse().getStatus()).isEqualTo(200);
+        String phoneNumber = "{\"number\":\"0411272222\",\"status\":\"INACTIVE\"}";
+        MvcResult response = mockMvc
+                .perform(post("/phonenumber").content(phoneNumber).contentType(APPLICATION_JSON))
+                .andDo(print())
+                .andReturn();
+        System.out.println(response.toString());
+        MvcResult response1 = mockMvc.perform(delete("/phonenumber/8")).andReturn();
+
+        assertThat(response1.getResponse().getStatus()).isEqualTo(200);
+    }
+
+    @Test
+    @Order(6)
+    @DisplayName("/phoneNumber/activate/{id} (POST)")
+    void activatePhoneNumber() throws Exception {
+
+        String phoneNumber = "{\"number\":\"0411272222\",\"status\":\"INACTIVE\"}";
+        MvcResult response = mockMvc
+                .perform(post("/phonenumber").content(phoneNumber).contentType(APPLICATION_JSON))
+                .andDo(print())
+                .andReturn();
+
+        MvcResult response1 = mockMvc.perform(put("/phonenumber/activate/0411272222"))
+                .andReturn();
+
+        assertThat(response1.getResponse().getStatus()).isEqualTo(200);
     }
 }

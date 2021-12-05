@@ -1,14 +1,14 @@
 package app;
 
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.times;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.MockedStatic;
 import org.springframework.boot.SpringApplication;
+
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.times;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("Application")

@@ -1,10 +1,7 @@
 package app.service;
 
-import app.controller.GlobalExceptionHandler;
 import app.entity.Customer;
 import app.repository.CustomerRepository;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class CustomerService {

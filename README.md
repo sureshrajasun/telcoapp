@@ -54,18 +54,18 @@ curl --location --request GET 'http://localhost:8080/phonenumber?pageNo=0&pageSi
 - Assign a phone number to a Customer
 
 ```curl
-curl --location --request POST 'http://localhost:8080/customer/' \
+curl --location --request PUT 'http://localhost:8080/customer/1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": 1,
     "name": "Jay",
     "email": "jay@telco.com",
     "phoneNumbers": [
-        {
-            "id": 6,
-            "number": "0466666666",
-            "status": "ACTIVE"
-        }
+       {
+        "id": 4,
+        "number": "0444444444",
+        "status": "ACTIVE"
+    }
     ]
 }'
 ```
