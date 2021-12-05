@@ -24,7 +24,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@DisplayName("UserService")
+@DisplayName("PhoneNumberService")
 @ExtendWith(MockitoExtension.class)
 public class PhoneNumberServiceTests {
 
@@ -39,7 +39,6 @@ public class PhoneNumberServiceTests {
     void findAll() {
 
         List<PhoneNumber> tasks = new ArrayList<>();
-        Page<PhoneNumber> pagedTasks = new PageImpl(tasks);
 
         Page<PhoneNumber> dummyPage = new PageImpl<PhoneNumber>(Arrays.asList(new PhoneNumber(1, "A", Status.ACTIVE)));
         when(phoneNumberRepository.findAll(isA(Pageable.class))).thenReturn(dummyPage);

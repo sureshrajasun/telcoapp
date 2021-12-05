@@ -18,7 +18,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@DisplayName("UserService")
+@DisplayName("CustomerService")
 @ExtendWith(MockitoExtension.class)
 public class CustomerServiceTests {
 

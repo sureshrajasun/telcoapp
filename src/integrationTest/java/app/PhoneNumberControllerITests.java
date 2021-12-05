@@ -75,7 +75,7 @@ public class PhoneNumberControllerITests {
 
     @Test
     @Order(4)
-    @DisplayName("/phoneNumber/{id} (GET)")
+    @DisplayName("/phonenumber/{id} (GET)")
     void getPhoneNumberById() throws Exception {
         MvcResult response = mockMvc.perform(get("/phonenumber/1")).andReturn();
 
@@ -84,7 +84,7 @@ public class PhoneNumberControllerITests {
 
     @Test
     @Order(5)
-    @DisplayName("/phoneNumber/{id} (DELETE)")
+    @DisplayName("/phonenumber/{id} (DELETE)")
     void deletePhoneNumber() throws Exception {
 
         String phoneNumber = "{\"number\":\"0411272222\",\"status\":\"INACTIVE\"}";
@@ -100,7 +100,7 @@ public class PhoneNumberControllerITests {
 
     @Test
     @Order(6)
-    @DisplayName("/phoneNumber/activate/{id} (POST)")
+    @DisplayName("/phonenumber/activate/{id} (POST)")
     void activatePhoneNumber() throws Exception {
 
         String phoneNumber = "{\"number\":\"0411272222\",\"status\":\"INACTIVE\"}";

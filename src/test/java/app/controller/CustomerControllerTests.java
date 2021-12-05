@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@DisplayName("UserController")
+@DisplayName("CustomerController")
 @ExtendWith(MockitoExtension.class)
 public class CustomerControllerTests {
 
@@ -44,7 +44,7 @@ public class CustomerControllerTests {
 
     @Test
     @DisplayName("#create returns a new customer")
-    void createUser() {
+    void createCustomer() {
         Customer customer = new Customer();
         when(customerService.create(customer)).thenReturn(customer);
 

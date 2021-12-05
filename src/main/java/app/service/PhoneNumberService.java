@@ -31,7 +31,6 @@ public class PhoneNumberService {
     public List<PhoneNumber> findAll(Integer pageNo, Integer pageSize, String sortBy) {
 
             Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-
             Page<PhoneNumber> pagedResult = phoneNumberRepository.findAll(paging);
 
             if(pagedResult.hasContent()) {
