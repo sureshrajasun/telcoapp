@@ -51,7 +51,7 @@ curl --location --request GET 'http://localhost:8080/phonenumber'
 curl --location --request GET 'http://localhost:8080/phonenumber?pageNo=0&pageSize=2&sortyBy=id'
 ```
 
-- Assign a phone number to a Customer
+- Assign a Phone number to a Customer
 
 ```curl
 curl --location --request PUT 'http://localhost:8080/customer/1' \
@@ -70,15 +70,21 @@ curl --location --request PUT 'http://localhost:8080/customer/1' \
 }'
 ```
 
-- Get all the phone number allocated to a Customer
+- Get all the Phone number allocated to a Customer
 
 ```curl
 curl --location --request GET 'http://localhost:8080/customer/1' \
 --data-raw ''
 ```
 
-- To Activate a phone number
+- To Activate a Phone number
 ```curl
 curl --location --request PUT 'http://localhost:8080/phonenumber/activate/0477777777' \
+--data-raw ''
+```
+
+- To Detach a Phone number from a Customer
+```curl
+curl --location --request PUT 'http://localhost:8080/customer/detachPhoneNumber/1/0411111111'
 --data-raw ''
 ```
